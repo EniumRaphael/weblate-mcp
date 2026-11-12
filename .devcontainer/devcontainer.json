@@ -1,0 +1,29 @@
+{
+  "name": "weblate-mcp",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": [
+    "--name",
+    "weblate-devcontainer"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Gruntfuggly.todo-tree",
+        "Anthropic.claude-code"
+      ]
+    }
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Weblate MCP (HTTP)",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteUser": "dev",
+  "mounts": [
+    "source=${localEnv:HOME}/.claude,target=/home/dev/.claude,type=bind"
+  ]
+}
